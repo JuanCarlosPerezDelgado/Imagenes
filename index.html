@@ -6,8 +6,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
 </head>
+<!-- Modal de imagen flotante -->
+<div id="modalImagen" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:9999;">
+    <img id="imagenModal" src="" style="max-width:90%; max-height:90%;">
+    <span onclick="cerrarModal()" style="position:absolute; top:20px; right:30px; font-size:30px; color:white; cursor:pointer;">&times;</span>
+</div>
+<!-- Modal de imagen flotante -->
 <body>
-    <div id="panorama" style="width: 100%; height: 700px;"></div>
+    <div id="panorama" style="width: 100%; height: 680px;"></div>
     <script>
         pannellum.viewer('panorama', {
             "default": {
@@ -18,138 +24,201 @@
                 "escena_1": {
                     "title": "Instalación",
                     "type": "equirectangular",
-                    "panorama": "imagen_360_2.jpeg",
+                    "panorama": "imagen_1.jpg",
+                    "yaw": -180,         
+                    "pitch": -5,  
+                    "hfov": 110,
                     "hotSpots": [
                         {
-                            "pitch": -2.1,
-                            "yaw": -23,    // Hotspot para volver a Escena 1
+                            "pitch": -5,
+                            "yaw": -215,    
                             "type": "scene",
                             "text": "Ir a central transcrítica de CO2",
                             "sceneId": "escena_2"
                         },
                         {
-                            "pitch": -0.6,
-                            "yaw": 37.1,   // Hotspot para ir a Escena 3
+                            "pitch": -5,
+                            "yaw": 205,   // Hotspot para ir a Escena 3
                             "type": "scene",
                             "text": "Ir a cámara frigorífica",
                             "sceneId": "escena_3"
+                        },
+                        {
+                            "pitch": -5,
+                            "yaw": 280,   // Hotspot para ir a Escena 3
+                            "type": "scene",
+                            "text": "Ir a bomba de calor",
+                            "sceneId": "escena_4"
                         }
                     ]
                 },
                 "escena_2": {
                     "title": "Central transcrítica de CO2",
                     "type": "equirectangular",
-                    "panorama": "imagen_360.jpeg",
+                    "panorama": "imagen_2.jpg",
+                    "yaw": 355,         
+                    "pitch": -15,  
+                    "hfov": 180,
                     "hotSpots": [
                         {
-                            "pitch": -2.1,
-                            "yaw": 132.9,   // Posición del hotspot
+                            "pitch": -5,
+                            "yaw": -280,    
                             "type": "scene",
                             "text": "Ir a instalación",
                             "sceneId": "escena_1"
                         },
                         {
-                            "pitch": 5,
-                            "yaw": 70,   // Posición del hotspot
+                            "pitch": -5,
+                            "yaw": -125,   // Posición del hotspot
+                            "type": "info",
+                            "text": "Gas-cooler",
+                        },
+                        {
+                            "pitch": -5,
+                            "yaw": -345,   // Posición del hotspot
                             "type": "info",
                             "text": "Cuadro eléctrico de control para los componentes de la central transcrítica de CO2",
                         },
                         {
-                            "pitch": 0,
-                            "yaw": 10,   // Posición del hotspot
+                            "pitch": 7,
+                            "yaw":332,   // Posición del hotspot
                             "type": "info",
                             "text": "Cuadro eléctrico de control para los componentes de las unidades evaporadoras",
                         },
                         {
-                            "pitch": -5,
-                            "yaw": -60,   // Posición del hotspot
-                            "type": "info",
-                            "text": "Gas-cooler (batería de intercambio y ventilador)",
-                        },
-                        {
-                            "pitch": -35,
-                            "yaw": 20,   // Posición del hotspot
+                            "pitch": -25,
+                            "yaw": 330,   // Posición del hotspot
                             "type": "info",
                             "text": "Central transcrítica de CO2",
                         },
                         {
-                            "pitch": -60,
-                            "yaw": 15,   // Posición del hotspot
+                            "pitch": -26.5,
+                            "yaw": 340,
                             "type": "info",
-                            "text": "Flash-tank",
+                            "text": "Ver imagen de los componentes",
+                            "clickHandlerFunc": function() {
+                                mostrarImagenModal("central_componentes.jpg");  // Ajusta la ruta si es necesario
+                            }
                         },
                         {
-                            "pitch": -50,
-                            "yaw": -8,   // Posición del hotspot
+                            "pitch": -5,
+                            "yaw": -130,
                             "type": "info",
-                            "text": "Compresor",
+                            "text": "Ver imagen de los componentes",
+                            "clickHandlerFunc": function() {
+                                mostrarImagenModal("condensador_componentes.PNG");  // Ajusta la ruta si es necesario
+                            }
                         },
                         {
-                            "pitch": -35,
-                            "yaw": -20,   // Posición del hotspot
+                            "pitch": -5,
+                            "yaw": -340,
                             "type": "info",
-                            "text": "Variador de frecuencia",
+                            "text": "Ver imagen de los componentes",
+                            "clickHandlerFunc": function() {
+                                mostrarImagenModal("cuadro_componentes1.jpg");  // Ajusta la ruta si es necesario
+                            }
                         },
                         {
-                            "pitch": -70,
-                            "yaw": -28,   // Posición del hotspot
+                            "pitch": 7,
+                            "yaw": 336,
                             "type": "info",
-                            "text": "Caudalímetro",
-                        },
-                        {
-                            "pitch": -58,
-                            "yaw": 40,   // Posición del hotspot
-                            "type": "info",
-                            "text": "Presostato de alta y baja presión",
-                        },
-                        {
-                            "pitch": -65,
-                            "yaw": 45,   // Posición del hotspot
-                            "type": "info",
-                            "text": "Válvula de alta presión",
-                        },
-                        {
-                            "pitch": -75,
-                            "yaw": 15,   // Posición del hotspot
-                            "type": "info",
-                            "text": "Filtro de humedad y antipartículas",
-                        },
-                        {
-                            "pitch": -45,
-                            "yaw": 2,   // Posición del hotspot
-                            "type": "info",
-                            "text": "Válvula by-pass",
+                            "text": "Ver imagen de los componentes",
+                            "clickHandlerFunc": function() {
+                                mostrarImagenModal("cuadro_componentes2.jpg");  // Ajusta la ruta si es necesario
+                            }
                         }
-
                     ]
-                },
-
+            },
                 "escena_3": {
                     "title": "Cámara frigorífica",
                     "type": "equirectangular",
-                    "panorama": "imagen_360_3.jpeg",
+                    "panorama": "imagen_4.jpg",
+                    "yaw": 340,         
+                    "pitch": 8,  
+                    "hfov": 200,
                     "hotSpots": [
                         {
-                            "pitch": -5,
-                            "yaw": -170,    // Hotspot para volver a Escena 2
+                            "pitch":-10,
+                            "yaw": -290,    
                             "type": "scene",
                             "text": "Ir a instalación",
                             "sceneId": "escena_1"
                         },
                         {
-                            "pitch": 10,
-                            "yaw": -5,   // Posición del hotspot
+                            "pitch": 8,
+                            "yaw": 330,   // Posición del hotspot
                             "type": "info",
-                            "text": "Unidades evaporadoras (válvulas de expansión, baterías de intercambio y ventiladores)",
-                        }
-
-
-
+                            "text": "Unidades evaporadoras",
+                        },
+                        {
+                            "pitch": 8,
+                            "yaw": 336,
+                            "type": "info",
+                            "text": "Ver imagen de los componentes",
+                            "clickHandlerFunc": function() {
+                                mostrarImagenModal("evaporadores_componentes.JPG");  // Ajusta la ruta si es necesario
+                            }
+                        }             
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     ]
-                }
+
+
+            },
+                "escena_4": {
+                    "title": "Bomba de calor",
+                    "type": "equirectangular",
+                    "panorama": "imagen_3.jpg",
+                    "yaw": 350,         
+                    "pitch": -5,  
+                    "hfov": 200,
+                    "hotSpots": [
+                        {
+                            "pitch":-5,
+                            "yaw": 110,    
+                            "type": "scene",
+                            "text": "Ir a instalación",
+                            "sceneId": "escena_1"
+                        },
+                        {
+                            "pitch":-5,
+                            "yaw": -180,    
+                            "type": "scene",
+                            "text": "Ir a cámara frigorífica",
+                            "sceneId": "escena_3"
+                        },         
+                    
+                    ]
             }
+
+
+
+
+        
+        
+        
+        
+        }
         });
     </script>
-    
+<!-- Modal de imagen flotante -->
+<script>
+function mostrarImagenModal(rutaImagen) {
+    document.getElementById('imagenModal').src = rutaImagen;
+    document.getElementById('modalImagen').style.display = 'flex';
+}
+function cerrarModal() {
+    document.getElementById('modalImagen').style.display = 'none';
+    document.getElementById('imagenModal').src = "";
+}
+</script>
+<!-- Modal de imagen flotante -->
 </body>
 </html>
+
